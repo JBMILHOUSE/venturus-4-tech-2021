@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { TaskForm } from '../../src/components/TaskForm/TaskForm'
+import { TaskList } from '../../src/components/TaskForm/TaskList/TaskList'
+
 export const Layout = () => {
 
     const Structure = styled.div`
@@ -9,17 +11,12 @@ export const Layout = () => {
      height: 100vh;
      display: grid;
      grid-template-columns: 8em 1fr 1fr 1fr 8em;
-     grid-template-rows: 9em 1fr;
+     grid-template-rows: 1rem 9em 1fr;
      background-image: linear-gradient(to bottom right, #E7F0FD, #ACEEBB);
     `
     
-    const TodoColumns = styled.div`
-    grid-column: 2 / 5;
-    grid-row: 2;
-    background-color: royalblue;
-    `
     return <Structure>
         <TaskForm />
-        <TodoColumns />
+        <TaskList />
     </Structure>
 }
