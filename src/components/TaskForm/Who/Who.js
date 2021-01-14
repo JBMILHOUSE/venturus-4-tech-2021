@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import uniqid from 'uniqid'
 
@@ -10,9 +10,9 @@ import Avatar2 from '../../../assets/avatar2.png'
 import Avatar3 from '../../../assets/avatar3.png'
 import Avatar4 from '../../../assets/avatar4.png'
 
-export const Who = () => {
+export const Who = ({ initialSelectedWho, onChangeSelectedWho }) => {
 
-    const [ selectedWho, setSelectedWho ] = useState(1);
+    const [ selectedWho, setSelectedWho ] = useState(initialSelectedWho);
 
     const completeWhoList = [
      {
@@ -88,11 +88,13 @@ export const Who = () => {
 
     const generetaAvatars = () => {
         return completeWhoList
-          .map((who) => { 
+          .map((who, i) => { 
             return <Avatar 
-                 key={uniqid()}
+                 key={i}
                  style={getAvatarStyle(who.id)}
-                 onClick={() => { setSelectedWho(who.id) }}
+                 onClick={() => { 
+                     setSelectedWho(who.id) 
+                     onChangeSelectedWho(who.id) }}
                  icon={
                   <img src={who.avatarSource} alt={`Avatar ${who.id}`} />
                  } />

@@ -1,12 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import uniqid from 'uniqid'
+import { Spin } from 'antd'
 
 import { TaskForm } from '../../src/components/TaskForm/TaskForm'
 import { TaskList } from '../../src/components/TaskForm/TaskList/TaskList'
 
 export const Layout = () => {
 
+    const [taskList, setTaskList] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const submitNewTask = (newTask) => {
+        const taskListCopy = [...taskList]
+        taskListCopy.push(newTask)
+
+        const reorderedTaskListCopy = taskListCopy.sort((x, y) => x.createdAt - y.createdAt)
+
+        setLoading(true)
+
+        setTimeout(() => {
+            setLoading(false)
+            setTaskList(reorderedTaskListCopy)
+        }, 3000)
+    }
+
     const Structure = styled.div`
+     overflow-y: auto;
      width: 100vw;
      height: 100vh;
      display: grid;
@@ -16,7 +36,7 @@ export const Layout = () => {
     `
     
     return <Structure>
-        <TaskForm />
-        <TaskList />
+        <TaskForm loading={loading} submitNewTask={submitNewTask} />
+        <TaskList loading={loading} taskList={taskList} setTaskList={setTaskList} />
     </Structure>
 }
