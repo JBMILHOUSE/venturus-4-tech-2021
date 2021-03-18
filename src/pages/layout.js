@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import uniqid from 'uniqid'
-import { Spin } from 'antd'
 
 import { TaskForm } from '../../src/components/TaskForm/TaskForm'
 import { TaskList } from '../../src/components/TaskForm/TaskList/TaskList'
