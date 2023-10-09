@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import uniqid from 'uniqid'
 
 import { Avatar } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
